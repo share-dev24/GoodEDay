@@ -8,6 +8,7 @@ export default function Layout() {
       <Container>
         <nav>nav 위치</nav>
         <BasicButton text="button" />
+        <Navbar />
         <Outlet />
       </Container>
     </>
