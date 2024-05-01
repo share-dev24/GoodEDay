@@ -8,6 +8,12 @@ export default {
       lg: '976px',
       xl: '1440px'
     },
+    width: {
+      full: '100%',
+      screen: '100vw',
+      half: '50%',
+      base: '768px'
+    },
     colors: {
       primary: '#DB5895',
       secondary: '#EAA03C',
@@ -16,6 +22,18 @@ export default {
       gray: '#f2f2f2'
     },
     spacing: {
+      // 1px ~ 9px
+      '1px': '1px',
+      '2px': '2px',
+      '3px': '3px',
+      '4px': '4px',
+      '5px': '5px',
+      '6px': '6px',
+      '7px': '7px',
+      '8px': '8px',
+      '9px': '9px',
+
+      // 10px ~ 자주 사용되는 단위로
       sm: '10px',
       md: '12px',
       lg: '14px',
