@@ -19,7 +19,8 @@ export default {
       secondary: '#EAA03C',
       black: '#404040',
       white: '#ffffff',
-      gray: '#f2f2f2'
+      gray: '#f2f2f2',
+      transparent: 'transparent'
     },
     spacing: {
       // 1px ~ 9px
@@ -39,7 +40,8 @@ export default {
       lg: '14px',
       xl: '16px',
       '2xl': '18px',
-      '3xl': '20px'
+      '3xl': '20px',
+      '4xl': '30px'
     }
   },
   plugins: []
