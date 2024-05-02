@@ -2,7 +2,7 @@ interface IContainer {
   children: React.ReactNode;
 }
 
-export default function Container({ children }: IContainer) {
+export default function FormContainer({ children }: IContainer) {
   return (
     <div className='w-[400px] p-sm flex justify-center items-center bg-gradient-to-r from-secondary to-primary rounded-lg'>
       <div className='w-full p-sm flex flex-col justify-center items-center gap-4xl bg-white rounded-md'>
