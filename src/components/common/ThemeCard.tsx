@@ -11,6 +11,7 @@ const CardContainer = styled.div<{ imageUrl: string }>`
   width: 167px;
   height: 270px;
   border-radius: 8px;
+  border: 1px solid black;
   position: relative;
   overflow: hidden;
   background-image: url(${(props) => props.imageUrl});
@@ -28,7 +29,7 @@ const Content = styled.div`
   font-weight: bold;
 `;
 
-export default function ThemeCard({ imageUrl = "/src/assets/images/a.jpg", theme = "카페", content = "카페는 어때?" }: ThemeCardProps) {
+export default function ThemeCard({ imageUrl = '/src/assets/images/a.jpg', theme = '카페', content = '카페는 어때?' }: ThemeCardProps) {
   return (
     <CardContainer imageUrl={imageUrl}>
       <ThemeBadge text={theme} />

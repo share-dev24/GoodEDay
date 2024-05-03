@@ -7,7 +7,12 @@ interface PostCardsGridProps {
 export default function PostCardsGrid({ children }: PostCardsGridProps) {
 
     return (
-        <div className='grid grid-cols grid-flow-col justify-start gap-[16px] px-[20px] py-lg'>
+        <div className='grid grid-cols-4 justify-start gap-[16px] px-[20px] py-lg'>
+            {children}
+            {children}
+            {children}
+            {children}
+            {children}
             {children}
         </div>
     )

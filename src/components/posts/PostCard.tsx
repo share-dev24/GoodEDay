@@ -3,11 +3,11 @@ import { useState } from 'react';
 import HeartIcon from './HeartIcon';
 
 interface PostCardProps {
-    userId?: string;
-    reviewDate?: string;
-    theme?: string;
+    userId: string;
+    reviewDate: string;
+    theme: string;
     imageUrl?: string;
-    content?: string;
+    content: string;
 }
 
 
@@ -19,10 +19,10 @@ export default function PostCard({ imageUrl = '/src/assets/images/a.jpg', userId
             <div className='relative'>
                 <img src={imageUrl} alt='후기' className='h-[167px] rounded-[8px] object-cover' />
                 <button
-                    className='absolute w-[24px] h-[24px] top-[140px] right-[8px]'
+                    className='absolute top-[140px] right-[8px]'
                     onClick={() => setIsLiked((prev) => !prev)}
                 >
-                    <HeartIcon isLike={isLiked} />
+                    <HeartIcon isLike={isLiked} likeCounter={23} />
                 </button>
             </div>
             <div className='flex justify-between p-2px pt-4px'>
@@ -33,6 +33,7 @@ export default function PostCard({ imageUrl = '/src/assets/images/a.jpg', userId
                 <span className='font-semibold inline-block'>{`[${theme}]`}</span>
                 <span className='text-sm'>&nbsp;{content}</span>
             </div>
+
         </div>
     );
 }
