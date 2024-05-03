@@ -48,6 +48,10 @@ const route = createBrowserRouter([
           {
             path: 'create-post/:cardId',
             element: <CreatePost />
+          },
+          {
+            path: ':postId',
+            element: <PostDetail />
           }
         ]
       }
