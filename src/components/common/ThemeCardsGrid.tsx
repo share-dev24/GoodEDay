@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 
 interface ThemeCardsGridProps {
@@ -13,12 +14,12 @@ export default function ThemeCardsGrid({ children }: ThemeCardsGridProps) {
 
     return (
         <div className='grid grid-cols grid-flow-col overflow-x-scroll justify-start gap-[16px] px-[20px] py-lg'>
-            <div className='w-[167px] h-[270px] rounded-lg bg-gradient-to-bl from-secondary to-primary'>
+            <Link to='create-card/:random' className='w-[167px] h-[270px] rounded-lg bg-gradient-to-bl from-secondary to-primary'>
 
                 {QUESTION_SVG}
                 <h4 className='text-center font-semibold text-white'>나만의 굳이데이<br />카드 생성하기</h4>
                 <div className='text-center text-[14px] text-white py-4px'>모든 옵션 설정 가능</div>
-            </div>
+            </Link>
             {children}
 
 

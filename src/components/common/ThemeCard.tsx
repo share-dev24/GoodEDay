@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ThemeBadge from './ThemeBadge';
+import getThemeKR from '../../modules/ThemeNameCompiling';
 
 interface ThemeCardProps {
   theme: string;
@@ -30,10 +32,15 @@ const Content = styled.div`
 `;
 
 export default function ThemeCard({ imageUrl = '/src/assets/images/a.jpg', theme = '카페', content = '카페는 어때?' }: ThemeCardProps) {
+
+
+
   return (
-    <CardContainer imageUrl={imageUrl}>
-      <ThemeBadge text={theme} />
-      <Content>{content}</Content>
-    </CardContainer>
+    <Link to={`create-card/:${theme}`}>
+      <CardContainer imageUrl={imageUrl}>
+        <ThemeBadge text={getThemeKR(theme)} />
+        <Content>{content}</Content>
+      </CardContainer>
+    </Link>
   );
 }
