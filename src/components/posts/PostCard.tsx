@@ -22,7 +22,7 @@ export default function PostCard({ imageUrl = '/src/assets/images/a.jpg', userId
                     className='absolute top-[140px] right-[8px]'
                     onClick={() => setIsLiked((prev) => !prev)}
                 >
-                    <HeartIcon isLike={isLiked} likeCounter={23} />
+                    <HeartIcon isLike={isLiked} />
                 </button>
             </div>
             <div className='flex justify-between p-2px pt-4px'>

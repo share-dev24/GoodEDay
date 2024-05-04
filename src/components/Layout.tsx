@@ -4,11 +4,11 @@ import Navbar from './Navbar';
 
 export default function Layout() {
   return (
-    <>
+    <div className='min-h-screen flex justify-center bg-gray'>
       <Container>
         <Navbar />
         <Outlet />
       </Container>
-    </>
+    </div>
   );
 }
