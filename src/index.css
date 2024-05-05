@@ -7,6 +7,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 html,
@@ -137,10 +140,4 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-* {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
 }
