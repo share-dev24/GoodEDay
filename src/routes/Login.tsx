@@ -16,10 +16,7 @@ export default function Login() {
           <div className='mt-4px'>소셜 로그인으로 간현하게 사용 가능합니다.</div>
         </div>
 
-        <div className='flex flex-col gap-[8px] w-full items-center'>
-          <LoginButton type='구글' onClick={() => { }} />
-          <LoginButton type='애플' onClick={() => { }} />
-        </div>
+        <LoginButton />
       </div>
     </section>
   );
