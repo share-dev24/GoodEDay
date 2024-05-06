@@ -20,3 +20,10 @@ interface todoData {
   todo: string;
   desc: string;
 }
+
+// zustand
+export interface UserState {
+  displayName: string | null;
+  uid: string | null;
+  setUser: (displayName: string | null, uid: string | null) => void;
+}
