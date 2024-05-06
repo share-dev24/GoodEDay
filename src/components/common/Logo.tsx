@@ -5,7 +5,7 @@ export default function Logo() {
 
         <h1
 
-            className='bg-gradient-to-r from-secondary to-primary rounded-2xl font-bold text-transparent'
+            className=' bg-gradient-to-r from-secondary to-primary rounded-2xl font-bold text-transparent'
         >
             <div className='p-6px bg-white'>
                 <Link to='/' className='bg-clip-text bg-gradient-to-r from-secondary to-primary'>
