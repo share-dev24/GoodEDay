@@ -13,7 +13,7 @@ export default function ThemeCardsGrid({ children }: ThemeCardsGridProps) {
     </svg>)
 
     return (
-        <div className='grid grid-cols grid-flow-col overflow-x-scroll justify-start gap-[16px] px-[20px] py-lg'>
+        <div className='grid grid-cols grid-flow-col overflow-x-auto justify-start gap-[16px] px-[20px] py-lg'>
             <Link to='create-card/:random' className='w-[167px] h-[270px] rounded-lg bg-gradient-to-bl from-secondary to-primary'>
 
                 {QUESTION_SVG}
