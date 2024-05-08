@@ -27,7 +27,7 @@ export const themeCardData: IthemeCardData[] = [
   {
     theme: 'event',
     title: '오랜만에 문화생활?',
-    imageURL: '',
+    imageURL: 'src/assets/images/event.jpeg',
     season: false
   }
 ];
