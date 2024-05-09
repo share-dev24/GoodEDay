@@ -17,7 +17,7 @@ export default function CreateFormInput({
         type='number'
         value={stateNumbers}
         onChange={handleOnChangeNumbers}
-        min={0}
+        min={1}
         className='w-[100px] mx-5px py-2px px-5px border-2 border-primary rounded-md focus:outline-none'
       />{' '}
       <FormSpanText text='명' />

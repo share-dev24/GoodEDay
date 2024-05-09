@@ -1,7 +1,7 @@
 import FormSpanText from '../../common/FormSpanText';
 import FormTitle from '../../common/FormTitle';
 
-const range = ['제한없음', '2', '5', '10', '50', '100'];
+const range = ['제한없음', '1', '5', '10', '15', '20'];
 
 interface ICreateFormSelectProps {
   stateRange: string;
