@@ -13,7 +13,6 @@ const CardContainer = styled.div<{ imageUrl: string }>`
   width: 167px;
   height: 270px;
   border-radius: 8px;
-  border: 1px solid black;
   position: relative;
   overflow: hidden;
   background-image: url(${(props) => props.imageUrl});
@@ -29,6 +28,7 @@ const Content = styled.div`
   color: white;
   font-size: 1.5rem; 
   font-weight: bold;
+  line-height: 1.3;
 `;
 
 export default function ThemeCard({ imageUrl = '/src/assets/images/a.jpg', theme = '카페', content = '카페는 어때?' }: ThemeCardProps) {

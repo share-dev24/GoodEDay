@@ -17,7 +17,7 @@ export default function PostCard({ imageUrl = '/src/assets/images/a.jpg', userId
     return (
         <div className='flex flex-col w-[167px] h-[270px] text-ellipsis overflow-hidden'>
             <div className='relative'>
-                <img src={imageUrl} alt='후기' className='h-[167px] rounded-[8px] object-cover' />
+                <img src={imageUrl} alt='후기' className='w-full h-[167px] rounded-[8px] object-cover' />
                 <button
                     className='absolute top-[140px] right-[8px]'
                     onClick={() => setIsLiked((prev) => !prev)}
