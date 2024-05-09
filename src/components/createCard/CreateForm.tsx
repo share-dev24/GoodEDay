@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import FormContainer from '../common/FormContainer';
 import KakaoPlace from './KakaoPlace';
 import CreateFormCheckbox from './form-elements/CreateFormCheckbox';
@@ -7,13 +7,28 @@ import CreateFormInput from './form-elements/CreateFormInput';
 import CreateFormBtn from './form-elements/CreateFormBtn';
 import { useLocation } from 'react-router-dom';
 
+interface ILocation {
+  latitude: number;
+  longitude: number;
+}
+
 export default function CreateForm() {
   const searchTheme = useLocation().pathname.split('/')[2];
+  const [location, setLocation] = useState<ILocation>();
   const [themes, setThemes] = useState<string[]>(
     searchTheme !== 'random' ? [searchTheme] : []
   );
   const [range, setRange] = useState('제한없음');
   const [numbers, setNumbers] = useState('1');
+
+  const getLocationSuccess = (pos: GeolocationPosition) => {
+    const { latitude, longitude } = pos.coords;
+    setLocation({ latitude, longitude });
+  };
+
+  const getLocationError = (error: GeolocationPositionError) => {
+    console.log(error.message);
+  };
 
   const handleOnChangeTheme = (value: string) => {
     const isChecked = themes.includes(value);
@@ -45,6 +60,13 @@ export default function CreateForm() {
     setNumbers('1');
   }, []);
 
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      getLocationSuccess,
+      getLocationError
+    );
+  }, []);
+
   return (
     <>
       <form className='w-full'>
@@ -66,7 +88,7 @@ export default function CreateForm() {
           />
         </FormContainer>
       </form>
-      <KakaoPlace />
+      <KakaoPlace userLocation={location} formData={{ themes, range }} />
       <CreateFormBtn
         resetData={resetData}
         formData={{ themes, range, numbers }}
