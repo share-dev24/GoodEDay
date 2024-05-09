@@ -1,5 +1,11 @@
-// 랜덤 카드 생성 페이지
+import CreateForm from '../components/createCard/CreateForm';
+import CreateFormTitle from '../components/createCard/CreateFormTitle';
 
 export default function CreateCard() {
-  return <div>create card page</div>;
+  return (
+    <main className='w-[400px] mx-auto pt-[100px] flex flex-col justify-center items-center gap-[50px]'>
+      <CreateFormTitle />
+      <CreateForm />
+    </main>
+  );
 }
