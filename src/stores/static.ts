@@ -29,10 +29,27 @@ export const themeCardData: IthemeCardData[] = [
     title: '오랜만에 문화생활?',
     imageURL: 'src/assets/images/event.jpeg',
     season: false
+  },
+  {
+    theme: '관광명소',
+    title: '숨은 관광명소를 찾아서!',
+    imageURL: '',
+    season: false
   }
 ];
 
-// 3. complete card page random todo static-data
+// 3. create card page form-elements checkbox theme list
+export const themeList = [
+  { id: 1, label: '카페', value: 'cafe' },
+  { id: 2, label: '맛집', value: 'restaurant' },
+  { id: 3, label: '문화생활', value: 'event' },
+  { id: 4, label: '관광명소', value: 'spot' }
+];
+
+// 4. create card page form-elements select input range list
+export const range = ['제한없음', '1', '5', '10', '15', '20'];
+
+// 5. complete card page random todo static-data
 export const randomTodoData: IrandomTodoData = {
   cafe: [
     {
