@@ -20,6 +20,8 @@ export default {
       black: '#404040',
       white: '#ffffff',
       gray: '#f2f2f2',
+      'gray-200': '#B7B7B7',
+      'gray-300': '#E5E4E4',
       transparent: 'transparent'
     },
     spacing: {
@@ -41,7 +43,8 @@ export default {
       xl: '16px',
       '2xl': '18px',
       '3xl': '20px',
-      '4xl': '30px'
+      '4xl': '30px',
+      '5xl': '50px'
     }
   },
   plugins: []
