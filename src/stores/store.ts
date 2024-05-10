@@ -4,5 +4,6 @@ import type { UserState } from '../types/staticType';
 export const useUserStore = create<UserState>((set) => ({
   displayName: null,
   uid: null,
-  setUser: (displayName, uid) => set({ displayName, uid })
+  photo: null,
+  setUser: (displayName, uid, photo) => set({ displayName, uid, photo })
 }));

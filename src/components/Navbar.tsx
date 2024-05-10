@@ -1,28 +1,17 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 import Logo from './common/Logo';
 import { useUserStore } from '../stores/store';
 
-interface NavbarProps {
-    url?: string;
-}
 
-export default function Navbar({ url }: NavbarProps) {
-    const { displayName, uid, setUser } = useUserStore((state) => ({
+
+export default function Navbar() {
+    const { displayName, uid, photo } = useUserStore((state) => ({
         displayName: state.displayName,
         uid: state.uid,
-        setUser: state.setUser,
+        photo: state.photo,
     }));
+    console.log(displayName, photo, uid)
 
-    useEffect(() => {
-        if (uid === null) {
-            const storedUid = sessionStorage.getItem('uid');
-            const name = sessionStorage.getItem('name');
-            if (storedUid) {
-                setUser(name, storedUid);
-            }
-        }
-    }, []);
     const POST_SVG = (
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-[36px] text-black'>
             <path
@@ -33,15 +22,7 @@ export default function Navbar({ url }: NavbarProps) {
         </svg>
     );
 
-    const USER_SVG = (
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-[36px] text-black'>
-            <path
-                fillRule='evenodd'
-                d='M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 0 1-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 0 1-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 0 1-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584ZM12 18a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z'
-                clipRule='evenodd'
-            />
-        </svg>
-    );
+
 
     return (
         <nav className='h-[60px] px-[27px] flex items-center justify-between border-b border-solid border-b-gray'>
@@ -49,22 +30,17 @@ export default function Navbar({ url }: NavbarProps) {
             <div className='flex gap-sm'>
                 <Link to='posts' className='flex flex-col '>
                     {POST_SVG}
-                    <span className='text-sm text-black text-center leading-relaxed'>post</span>
                 </Link>
 
-                {uid ? (<Link to='user-page' className='flex flex-col'>
-                    {url ? (
-                        <img className='rounded-full' src={url} alt='user profile' />
-                    ) : (
-                        <div className="flex justify-center">{USER_SVG}</div>
-                    )}
-                    <span className='text-sm text-black text-center leading-relaxed'>{displayName}</span>
+                {uid ? (<Link to='user-page' className='flex flex-col '>
+
+                    <img className='rounded-full w-[40px] ' src={photo ? photo : 'src/assets/images/user.svg'} alt='user profile' />
+
                 </Link>) :
                     (<Link to='login' className='flex flex-col'>
 
-                        <div className="flex justify-center">{USER_SVG}</div>
+                        <img className="flex justify-center" src='src/assets/images/user.svg' />
 
-                        <span className='text-sm text-black text-center'>user</span>
                     </Link>)
                 }
             </div>

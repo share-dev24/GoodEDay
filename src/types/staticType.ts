@@ -25,5 +25,10 @@ interface todoData {
 export interface UserState {
   displayName: string | null;
   uid: string | null;
-  setUser: (displayName: string | null, uid: string | null) => void;
+  photo: string | null;
+  setUser: (
+    displayName: string | null,
+    uid: string | null,
+    photo: string | null
+  ) => void;
 }
