@@ -1,12 +1,7 @@
+import { range } from '../../../stores/static';
+import { ICreateFormSelectProps } from '../../../types/createCardType';
 import FormSpanText from '../../common/FormSpanText';
 import FormTitle from '../../common/FormTitle';
-
-const range = ['제한없음', '1', '5', '10', '15', '20'];
-
-interface ICreateFormSelectProps {
-  stateRange: string;
-  handleOnChangeRange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-}
 
 export default function CreateFormSelect({
   stateRange,
