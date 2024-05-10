@@ -1,36 +1,7 @@
 import { useEffect, useState } from 'react';
 import FormTitle from '../common/FormTitle';
 import { createKakaoLocalUrl, getKakaoPlaces } from '../../modules/map/map';
-
-interface IUserLocation {
-  latitude: number;
-  longitude: number;
-}
-
-interface IFormData {
-  themes: string[];
-  range: string;
-}
-
-interface ILocationProps {
-  userLocation: IUserLocation | undefined;
-  formData: IFormData;
-}
-
-interface ILocationResult {
-  address_name: string;
-  category_group_code: string;
-  category_group_name: string;
-  category_name: string;
-  distance: string;
-  id: string;
-  phone: string;
-  place_name: string;
-  place_url: string;
-  road_address_name: string;
-  x: string;
-  y: string;
-}
+import { ILocationProps, ILocationResult } from '../../types/createCardType';
 
 export default function KakaoPlace({ userLocation, formData }: ILocationProps) {
   const [places, setPlaces] = useState<ILocationResult[]>([]);

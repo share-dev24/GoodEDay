@@ -1,16 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import BasicButton from '../../common/BasicButton';
-
-interface IFormData {
-  themes: string[];
-  range: string;
-  numbers: string;
-}
-
-interface ICreateFormBtnProps {
-  resetData: () => void;
-  formData: IFormData;
-}
+import { ICreateFormBtnProps, IFormData } from '../../../types/createCardType';
 
 export default function CreateFormBtn({
   resetData,

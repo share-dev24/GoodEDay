@@ -1,14 +1,5 @@
 import axios from 'axios';
-
-interface IUserLocation {
-  latitude: number;
-  longitude: number;
-}
-
-interface IFormData {
-  themes: string[];
-  range: string;
-}
+import { IFormData, IUserLocation } from '../../types/createCardType';
 
 const kakaoUrl = 'https://dapi.kakao.com/v2/local/search/category.json';
 const KAKAO_API_KEY = `KakaoAK ${import.meta.env.VITE_REST_API_KEY}`;

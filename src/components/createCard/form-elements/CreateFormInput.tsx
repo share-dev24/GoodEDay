@@ -1,10 +1,6 @@
+import { ICreateFormInputProps } from '../../../types/createCardType';
 import FormSpanText from '../../common/FormSpanText';
 import FormTitle from '../../common/FormTitle';
-
-interface ICreateFormInputProps {
-  stateNumbers: string;
-  handleOnChangeNumbers: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
 
 export default function CreateFormInput({
   stateNumbers,

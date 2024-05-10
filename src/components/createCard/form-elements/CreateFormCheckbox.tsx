@@ -1,17 +1,6 @@
+import { themeList } from '../../../stores/static';
+import { ICreateFormCheckboxProps } from '../../../types/createCardType';
 import FormTitle from '../../common/FormTitle';
-
-const themeList = [
-  { id: 1, label: '카페', value: 'cafe' },
-  { id: 2, label: '맛집', value: 'restaurant' },
-  { id: 3, label: '문화생활', value: 'event' },
-  { id: 4, label: '관광명소', value: 'spot' }
-];
-
-interface ICreateFormCheckboxProps {
-  pathTheme: string;
-  stateThemes: string[];
-  handleOnChangeTheme: (value: string) => void;
-}
 
 export default function CreateFormCheckbox({
   pathTheme,

@@ -6,11 +6,7 @@ import CreateFormSelect from './form-elements/CreateFormSelect';
 import CreateFormInput from './form-elements/CreateFormInput';
 import CreateFormBtn from './form-elements/CreateFormBtn';
 import { useLocation } from 'react-router-dom';
-
-interface ILocation {
-  latitude: number;
-  longitude: number;
-}
+import { ILocation } from '../../types/createCardType';
 
 export default function CreateForm() {
   const searchTheme = useLocation().pathname.split('/')[2];
