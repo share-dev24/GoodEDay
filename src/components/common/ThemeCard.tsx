@@ -34,7 +34,7 @@ const Content = styled.div`
 export default function ThemeCard({ imageurl = '/src/assets/images/a.jpg', theme = '카페', content = '카페는 어때?' }: ThemeCardProps) {
 
   return (
-    <Link to={`create-card/:${theme}`}>
+    <Link to={`create-card/${theme}`}>
       <CardContainer imageurl={imageurl}>
         <ThemeBadge text={getThemeKR(theme)} />
         <Content>{content}</Content>
