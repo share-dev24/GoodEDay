@@ -1,9 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useUserStore } from '../../stores/store';
 import type { UserState } from '../../types/staticType';
-import { firebaseStorage, firebaseDb } from '../../../firebase';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { doc, updateDoc } from 'firebase/firestore';
+import { handleFileChange } from '../../fetch/update';
 
 export default function PhotoChangeInput() {
     const { displayName, uid, photo, setUser } = useUserStore<UserState>((state) => ({
@@ -18,42 +16,25 @@ export default function PhotoChangeInput() {
     const [file, setFile] = useState<Blob>();
     console.log('선택이미지', selectedImage)
 
-    const handleFileShow = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileShow = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 
         const file = event.target.files?.[0];
         if (file) {
             setSelectedImage(URL.createObjectURL(file));
             setFile(file)
         }
-    }
-    console.log(selectedImage)
-    const handleFileChange = async () => {
+    }, [file])
 
-        if (file) {
-            const blob = new Blob([file], { type: 'image/png,jpg,jpeg', });
 
-            try {
-                if (uid) {
-                    const uploadedFile = await uploadBytes(ref(firebaseStorage, `userProfiles/${uid}`), blob);
-
-                    const fileURL = await getDownloadURL(uploadedFile.ref);
-                    console.log('파일 업로드 성공:', fileURL);
-
-                    const userRef = doc(firebaseDb, 'userData', uid);
-
-                    await updateDoc(userRef, {
-                        photo: fileURL
-                    });
-
-                    setUser(displayName, uid, fileURL);
-                    sessionStorage.setItem('photo', fileURL);
-                }
-
-            } catch (error) {
-                console.error('파일 업로드 실패:', error);
+    const handleFileUpdate = async () => {
+        if (file && uid) {
+            const fileURL = await handleFileChange({ file, uid });
+            if (fileURL) {
+                setUser(displayName, uid, fileURL);
+            } else {
+                console.log('파일업로드 실패')
             }
         }
-
     };
 
 
@@ -86,7 +67,7 @@ export default function PhotoChangeInput() {
                     <img src={selectedImage} alt='업로드된 사진' className='w-[340px] h-[340px] object-cover' />
                     <div className='w-full flex gap-8px'>
                         <button className='text-sm w-full  text-primary border border-primary rounded-lg p-4px hover:text-white hover:bg-primary' onClick={handleChooseImage}>다시 선택하기</button>
-                        <button className='text-sm w-full text-primary border border-primary rounded-lg p-4px hover:text-white hover:bg-primary' onClick={handleFileChange}>바꾸기</button>
+                        <button className='text-sm w-full text-primary border border-primary rounded-lg p-4px hover:text-white hover:bg-primary' onClick={handleFileUpdate}>바꾸기</button>
                     </div>
                 </div>
             )}

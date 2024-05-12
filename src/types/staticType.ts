@@ -21,6 +21,16 @@ interface todoData {
   desc: string;
 }
 
+export interface IHandleUpdateName {
+  uid: string;
+  newName: string;
+}
+
+export interface IHandleUpdateFile {
+  file: Blob;
+  uid: string;
+}
+
 // zustand
 export interface UserState {
   displayName: string | null;
