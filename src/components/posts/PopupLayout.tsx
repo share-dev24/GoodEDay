@@ -36,21 +36,28 @@ const CloseButton = styled.button`
   cursor: pointer;
 `;
 
-interface PopupLayoutProps {
+interface IPopupLayoutProps {
     children: React.ReactNode;
     closeNavigate?: string;
+    onPopupClose?: () => void
 }
 
-export default function PopupLayout({ children, closeNavigate }: PopupLayoutProps) {
+export default function PopupLayout({ children, closeNavigate, onPopupClose }: IPopupLayoutProps) {
+
     const navigate = useNavigate();
 
     const handleNavigate = () => {
+        if (onPopupClose) {
+            return onPopupClose()
+        }
         if (closeNavigate) {
-            navigate(closeNavigate)
+            return navigate(closeNavigate)
         } else {
-            navigate(-1)
+            return navigate(-1)
         }
     }
+
+
 
     return (
         <FullScreenOverlay>
