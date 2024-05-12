@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}', 'node_modules/preline/dist/*.js'],
   theme: {
     screens: {
       sm: '480px',
@@ -44,5 +44,5 @@ export default {
       '4xl': '30px'
     }
   },
-  plugins: []
+  plugins: [require('preline/plugin')]
 };

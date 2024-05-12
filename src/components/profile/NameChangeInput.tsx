@@ -5,6 +5,7 @@ import type { UserState } from '../../types/staticType';
 
 export default function NameChangeInput() {
     const [isInputOpen, setIsInputOpen] = useState<boolean>(false);
+    const [isError, setIsError] = useState<boolean>(false);
     const [newName, setNewName] = useState<string>('');
 
     const { uid, displayName, setUser, photo } = useUserStore<UserState>((state: UserState) => ({
@@ -19,27 +20,25 @@ export default function NameChangeInput() {
     };
 
     const handleNameChangeButton = () => {
-        if (uid) {
-            handleUpdateName({ uid, newName })
-            setUser(newName, uid, photo)
-            sessionStorage.setItem('name', newName)
-            setIsInputOpen((prev) => !prev)
+        setIsInputOpen((prev) => !prev);
+        if (newName.length >= 2 && uid) {
+            handleUpdateName({ uid, newName });
+            setUser(newName, uid, photo);
+            sessionStorage.setItem('name', newName);
         }
-    }
-
-
+    };
 
     return (
-        <div className='flex items-center gap-6px'>
-            <span className='flex items-center font-bold'>{displayName}</span>
-            <div className={`group max-w-sm space-y-[12px] border-b border-solid border-primary ${!isInputOpen && "hidden"}`}>
+        <div className='flex items-center gap-6px mb-[10px]'>
+            <span className='flex items-center font-bold text-black'>{displayName}</span>
+            <div className={`group max-w-sm space-y-[12px] border-b border-solid border-primary ${!isInputOpen && 'hidden'}`}>
                 <input
-                    type="text"
+                    type='text'
                     onChange={handleInputChange}
                     value={newName}
-                    className="py-[8px] px-[16px] w-[240px] rounded-lg text-sm 
-                        focus:outline-none focus:ring-1 focus:ring-primary group-focus:border-transparent"
-                    placeholder="새 닉네임을 2글자 이상 입력하세요"
+                    className='p-[8px] w-[240px] rounded-lg text-sm 
+                        focus:outline-none focus:ring-1 focus:ring-primary group-focus:border-transparent'
+                    placeholder='새 닉네임을 2글자 이상 입력하세요'
                 />
             </div>
             <button className='w-[20px] h-[20px]' onClick={handleNameChangeButton}>

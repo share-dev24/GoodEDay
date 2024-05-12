@@ -24,6 +24,7 @@ export default function Navbar() {
 
 
 
+
     return (
         <nav className='h-[60px] px-[27px] flex items-center justify-between border-b border-solid border-b-gray'>
             <Logo />
@@ -34,12 +35,12 @@ export default function Navbar() {
 
                 {uid ? (<Link to='user-page' className='flex flex-col '>
 
-                    <img className='rounded-full w-[40px] ' src={photo ? photo : 'src/assets/images/user.svg'} alt='user profile' />
+                    <img className='rounded-full w-[36px] h-[36px] object-cover' src={photo ? photo : 'src/assets/images/user.svg'} alt='user profile' />
 
                 </Link>) :
                     (<Link to='login' className='flex flex-col'>
 
-                        <img className="flex justify-center" src='src/assets/images/user.svg' />
+                        <img className="flex justify-center w-[36px] h-[36px] text-black" src='src/assets/images/user.svg' />
 
                     </Link>)
                 }
