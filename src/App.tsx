@@ -17,7 +17,6 @@ function App() {
 
     if (storedUid) {
       setUser(name, storedUid, photo);
-      console.log(name, storedUid, photo)
     }
 
   }, []);

@@ -5,12 +5,10 @@ import { useUserStore } from '../stores/store';
 
 
 export default function Navbar() {
-    const { displayName, uid, photo } = useUserStore((state) => ({
-        displayName: state.displayName,
+    const { uid, photo } = useUserStore((state) => ({
         uid: state.uid,
         photo: state.photo,
     }));
-    console.log(displayName, photo, uid)
 
     const POST_SVG = (
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-[36px] text-black'>
@@ -40,7 +38,7 @@ export default function Navbar() {
                 </Link>) :
                     (<Link to='login' className='flex flex-col'>
 
-                        <img className="flex justify-center w-[36px] h-[36px] text-black" src='src/assets/images/user.svg' />
+                        <img className='flex justify-center w-[36px] h-[36px] text-black' src='src/assets/images/user.svg' />
 
                     </Link>)
                 }
