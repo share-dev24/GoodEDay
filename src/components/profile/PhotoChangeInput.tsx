@@ -83,7 +83,7 @@ export default function PhotoChangeInput() {
                 <div id='dismiss-alert' className='absolute ml-[10px] w-[320px] flex justify-center top-[50%] hs-removing:translate-x-[20px] hs-removing:opacity-0 transition duration-300 bg-gray  text-sm text-black rounded-xl p-[12px]' role='alert'>
                     <div className='flex gap-8px'>
                         <div className='flex-shrink-0'>
-                            <svg className='flex-shrink-0 size-4 mt-0.5' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                            <svg className='flex-shrink-0 size-4 mt-0.5' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
                                 <path d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z'></path>
                                 <path d='m9 12 2 2 4-4'></path>
                             </svg>
