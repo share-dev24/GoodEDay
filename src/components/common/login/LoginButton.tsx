@@ -6,6 +6,7 @@ import { useUserStore } from "../../../stores/store";
 
 export default function LoginButton() {
   const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider()
   const setUser = useUserStore((state) => state.setUser);
   const navigate = useNavigate();
 
@@ -46,9 +47,8 @@ export default function LoginButton() {
   };
 
   const handleFacebookLogin = async () => {
-    // 페이스북 로그인 처리 (구글 로그인과 비슷한 구조)
     try {
-      const result = await signInWithPopup(firebaseAuth, new FacebookAuthProvider());
+      const result = await signInWithPopup(firebaseAuth, facebookProvider);
       const uid = result.user.uid;
       const displayName = result.user.displayName ?? 'user';
       const photoURL = result.user.photoURL ?? 'user';

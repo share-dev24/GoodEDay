@@ -1,13 +1,9 @@
 import Router from './Router';
 import { useEffect } from 'react';
 import { useUserStore } from './stores/store';
-import type { UserState } from './types/staticType';
 
 function App() {
-  const { setUser } = useUserStore<UserState>((state) => ({
-    displayName: state.displayName,
-    uid: state.uid,
-    photo: state.photo,
+  const { setUser } = useUserStore((state) => ({
     setUser: state.setUser,
   }));
   useEffect(() => {
