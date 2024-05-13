@@ -36,7 +36,7 @@ export default function Main() {
           <ThemeCard
             key={index}
             theme={card.theme}
-            imageUrl={card.imageURL}
+            imageurl={card.imageURL}
             content={card.title}
           />
         ))}
