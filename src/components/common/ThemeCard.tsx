@@ -5,17 +5,17 @@ import getThemeKR from '../../modules/ThemeNameCompiling';
 
 interface ThemeCardProps {
   theme: string;
-  imageUrl: string;
+  imageurl: string;
   content: string;
 }
 
-const CardContainer = styled.div<{ imageUrl: string }>`
+const CardContainer = styled.div<{ imageurl: string }>`
   width: 167px;
   height: 270px;
   border-radius: 8px;
   position: relative;
   overflow: hidden;
-  background-image: url(${(props) => props.imageUrl});
+  background-image: url(${(props) => props.imageurl});
   background-size: cover;
   background-position: center;
 `;
@@ -31,13 +31,11 @@ const Content = styled.div`
   line-height: 1.3;
 `;
 
-export default function ThemeCard({ imageUrl = '/src/assets/images/a.jpg', theme = '카페', content = '카페는 어때?' }: ThemeCardProps) {
-
-
+export default function ThemeCard({ imageurl = '/src/assets/images/a.jpg', theme = '카페', content = '카페는 어때?' }: ThemeCardProps) {
 
   return (
-    <Link to={`create-card/:${theme}`}>
-      <CardContainer imageUrl={imageUrl}>
+    <Link to={`create-card/${theme}`}>
+      <CardContainer imageurl={imageurl}>
         <ThemeBadge text={getThemeKR(theme)} />
         <Content>{content}</Content>
       </CardContainer>

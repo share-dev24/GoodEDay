@@ -36,17 +36,33 @@ const CloseButton = styled.button`
   cursor: pointer;
 `;
 
-interface PopupLayoutProps {
+interface IPopupLayoutProps {
     children: React.ReactNode;
+    closeNavigate?: string;
+    onPopupClose?: () => void
 }
 
-export default function PopupLayout({ children }: PopupLayoutProps) {
+export default function PopupLayout({ children, closeNavigate, onPopupClose }: IPopupLayoutProps) {
+
     const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        if (onPopupClose) {
+            return onPopupClose()
+        }
+        if (closeNavigate) {
+            return navigate(closeNavigate)
+        } else {
+            return navigate(-1)
+        }
+    }
+
+
 
     return (
         <FullScreenOverlay>
             <PopupBox>
-                <CloseButton onClick={() => navigate(-1)}>
+                <CloseButton onClick={handleNavigate}>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' className='w-6 h-6'>
                         <path fillRule='evenodd' d='M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z' clipRule='evenodd' />
                     </svg>
