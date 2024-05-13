@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from "firebase/auth";
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useNavigate } from "react-router-dom";
@@ -101,4 +99,3 @@ export default function LoginButton() {
         </div>
     );
 }
->>>>>>> feature-firebase-login-function
