@@ -25,3 +25,25 @@ interface todoData {
   todo: string;
   desc: string;
 }
+
+export interface IHandleUpdateName {
+  uid: string;
+  newName: string;
+}
+
+export interface IHandleUpdateFile {
+  file: Blob;
+  uid: string;
+}
+
+// zustand
+export interface UserState {
+  displayName: string | null;
+  uid: string | null;
+  photo: string | null;
+  setUser: (
+    displayName: string | null,
+    uid: string | null,
+    photo: string | null
+  ) => void;
+}
