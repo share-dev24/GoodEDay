@@ -1,8 +1,8 @@
 import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from "firebase/auth";
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useNavigate } from "react-router-dom";
-import { firebaseAuth, firebaseDb } from "../../../../firebase";
-import { useUserStore } from "../../../stores/store";
+import { firebaseAuth, firebaseDb } from "../../../firebase";
+import { useUserStore } from "../../stores/store";
 
 export default function LoginButton() {
   const googleProvider = new GoogleAuthProvider();
