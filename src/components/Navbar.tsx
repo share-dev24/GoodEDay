@@ -31,17 +31,9 @@ export default function Navbar() {
                     {POST_SVG}
                 </Link>
 
-                {uid ? (<Link to='user-page' className='flex flex-col '>
-
-                    <img className='rounded-full w-[36px] h-[36px] object-cover' src={photo ? photo : 'src/assets/images/user.svg'} alt='user profile' />
-
-                </Link>) :
-                    (<Link to='login' className='flex flex-col'>
-
-                        <img className='flex justify-center w-[36px] h-[36px] text-black' src='src/assets/images/user.svg' />
-
-                    </Link>)
-                }
+                <Link to={uid ? 'user-page' : 'login'} className='flex flex-col '>
+                    <img className='rounded-full w-[36px] h-[36px] object-cover' src={uid && photo ? photo : 'src/assets/images/user.svg'} alt='user profile' />
+                </Link>
             </div>
         </nav>
     );
