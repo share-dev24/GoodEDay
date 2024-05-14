@@ -5,8 +5,7 @@ import SubTitle from '../components/common/SubTitle';
 import ThemeCardsGrid from '../components/common/ThemeCardsGrid';
 import ThemeCard from '../components/common/ThemeCard';
 import { themeCardData } from '../stores/static';
-import PostCardsGrid from '../components/posts/PostCardsGrid';
-import PostCard from '../components/posts/PostCard';
+import PostCardsSection from '../components/posts/PostCardsSection';
 
 const BannerContainer = styled.div`
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('src/assets/images/banner.jpeg');
@@ -36,7 +35,7 @@ export default function Main() {
           <ThemeCard
             key={index}
             theme={card.theme}
-            imageurl={card.imageURL}
+            imageUrl={card.imageURL}
             content={card.title}
           />
         ))}
@@ -45,9 +44,7 @@ export default function Main() {
         <MainTitle text='나의 굳이데이를 자랑해보세요 ✍🏻' />
         <Link to='posts' className='p-sm text-10px flex items-center'>전체보기</Link>
       </div>
-      <PostCardsGrid>
-        <PostCard userId='아이디' reviewDate='24.05.05' theme='문화생활' content='전시를 관람하고 운 좋게 작가님과 워크샵 활동도 했어요!너무 좋았어요' imageUrl='/src/assets/images/event.jpeg' />
-      </PostCardsGrid>
+      <PostCardsSection rowInit={3} />
     </div>
   );
 }
