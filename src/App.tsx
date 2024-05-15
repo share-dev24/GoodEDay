@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useUserStore } from './stores/store';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-
 const queryClient = new QueryClient()
 
 function App() {
@@ -24,8 +23,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Router />
     </QueryClientProvider>
-  )
-    ;
+  );
 }
 
 export default App;
