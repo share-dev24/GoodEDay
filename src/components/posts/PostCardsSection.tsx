@@ -20,17 +20,19 @@ export default function PostCardsSection({ rowInit }: IPostCardsSection) {
 
     return (
         <>
-            {postCardsData?.map((data: IPostCards) => (
-                <PostCardsGrid key={`${data.writeDate}-${data.name}`}>
-                    <PostCard
-                        userId={data.name}
+            <PostCardsGrid >
+                {postCardsData?.map((data: IPostCards) => (
+                    <PostCard key={`${data.writeDate}-${data.name}`}
+                        postId={data.postId}
+                        uid={data.uid}
+                        userName={data.name}
                         reviewDate={data.writeDate}
                         theme={data.theme}
                         content={data.content}
                         imageUrl={data.image}
                     />
-                </PostCardsGrid>
-            ))}
+                ))}
+            </PostCardsGrid>
 
         </>
     )

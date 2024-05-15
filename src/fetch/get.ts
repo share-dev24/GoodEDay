@@ -2,22 +2,22 @@ import { firebaseDb } from '../../firebase'; // firebase 모듈에서 firestore�
 import { collection, getDocs, limit, query, orderBy } from 'firebase/firestore';
 import type { IPostCards } from '../types/postCardsType';
 
-// 최신 writeTime을 기준으로 4*3개의 문서 가져오기
+// 최신 writeTime을 기준으로 (4 * itemRows)개의 문서 가져오기
 export const getPostCardsData = async (itemRows: number) => {
   try {
     const querySnapshot = await getDocs(
       query(
         collection(firebaseDb, 'postCards'),
-        orderBy('write-date', 'desc'),
+        orderBy('writeDate', 'desc'),
         limit(4 * itemRows)
       )
     );
-
     const postCardsData = [] as Array<IPostCards>;
     querySnapshot.forEach((doc) => {
       const item = doc.data();
-      postCardsData.push(item as IPostCards);
+      postCardsData.push({ postId: doc.id, ...item } as IPostCards);
     });
+    console.log(postCardsData);
 
     return postCardsData;
   } catch (error) {

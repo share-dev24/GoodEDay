@@ -1,6 +1,7 @@
 import type { Timestamp } from "firebase/firestore";
 
 export interface IPostCards {
+    postId: string,
     address: string,
     content: string,
     name: string,
