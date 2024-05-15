@@ -1,5 +1,21 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledGrid = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: column; 
+    overflow-x: auto; 
+    justify-content: start;
+    gap: 16px;
+    padding: 20px;
+     -ms-overflow-style: none;
+    scrollbar-width: none; 
+    &::-webkit-scrollbar {
+        display: none;
+    }
+`;
 
 
 interface ThemeCardsGridProps {
@@ -13,7 +29,7 @@ export default function ThemeCardsGrid({ children }: ThemeCardsGridProps) {
     </svg>)
 
     return (
-        <div className='grid grid-cols grid-flow-col overflow-x-auto justify-start gap-[16px] px-[20px] py-lg'>
+        <StyledGrid>
             <Link to='create-card/:random' className='w-[167px] h-[270px] rounded-lg bg-gradient-to-bl from-secondary to-primary'>
 
                 {QUESTION_SVG}
@@ -23,6 +39,6 @@ export default function ThemeCardsGrid({ children }: ThemeCardsGridProps) {
             {children}
 
 
-        </div>
+        </StyledGrid>
     )
 }
