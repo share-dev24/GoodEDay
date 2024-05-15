@@ -44,7 +44,7 @@ export default function Main() {
         <MainTitle text='나의 굳이데이를 자랑해보세요 ✍🏻' />
         <Link to='posts' className='p-sm text-10px flex items-center'>전체보기</Link>
       </div>
-      <PostCardsSection rowInit={3} />
+      <PostCardsSection rowInit={2} />
     </div>
   );
 }

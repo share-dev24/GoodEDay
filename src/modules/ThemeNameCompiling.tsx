@@ -11,6 +11,9 @@ export default function getThemeKR(theme: string) {
         case 'event':
             themeKR = '문화생활';
             break;
+        case 'spot':
+            themeKR = '관광명소';
+            break;
         default:
             themeKR = '알 수 없는 테마';
     }
