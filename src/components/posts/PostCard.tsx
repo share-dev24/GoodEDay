@@ -22,7 +22,7 @@ export default function PostCard({ imageUrl, userName, reviewDate, theme, conten
     return (
         <Link to={`posts/${uid}`} >
 
-            <div className='flex flex-col w-[167px] h-[270px] text-ellipsis overflow-hidden'>
+            <div className='flex flex-col w-[167px] h-[274px] text-ellipsis overflow-hidden'>
                 <div className='relative'>
                     <img src={imageUrl} alt='후기' className='w-full h-[167px] rounded-[8px] object-cover' />
                     <button
