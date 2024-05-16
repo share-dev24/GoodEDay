@@ -30,7 +30,7 @@ export default function ThemeCardsGrid({ children }: ThemeCardsGridProps) {
 
     return (
         <StyledGrid>
-            <Link to='create-card/:random' className='w-[167px] h-[270px] rounded-lg bg-gradient-to-bl from-secondary to-primary'>
+            <Link to='create-card/random' className='w-[167px] h-[270px] rounded-lg bg-gradient-to-bl from-secondary to-primary'>
 
                 {QUESTION_SVG}
                 <h4 className='text-center font-semibold text-white'>나만의 굳이데이<br />카드 생성하기</h4>
