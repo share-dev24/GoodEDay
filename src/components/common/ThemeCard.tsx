@@ -9,13 +9,13 @@ interface ThemeCardProps {
   content: string;
 }
 
-const CardContainer = styled.div<{ image: string }>`
+const CardContainer = styled.div<{ $image: string }>`
   width: 167px;
   height: 270px;
   border-radius: 8px;
   position: relative;
   overflow: hidden;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url(${(props) => props.image});
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url(${(props) => props.$image});
   background-size: cover;
   background-position: center;
 `;
@@ -35,7 +35,7 @@ export default function ThemeCard({ imageUrl = '/src/assets/images/a.jpg', theme
 
   return (
     <Link to={`create-card/${theme}`}>
-      <CardContainer image={imageUrl}>
+      <CardContainer $image={imageUrl}>
         <ThemeBadge text={getThemeKR(theme)} />
         <Content>{content}</Content>
       </CardContainer>
