@@ -1,5 +1,9 @@
-// 굳이데이 카드 후기 작성 페이지
+import PopupLayout from "../components/posts/PopupLayout";
 
 export default function CreatePost() {
-  return <div>create post page</div>;
+  return (
+    <PopupLayout >
+
+    </PopupLayout>
+  );
 }
