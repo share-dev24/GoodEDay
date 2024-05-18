@@ -11,7 +11,7 @@ interface IPostCardsSection {
 
 const fetchPostCardsData = async (itemRows: number): Promise<IPostCards[]> => {
     const data = await getPostCardsData(itemRows);
-    return data || null;
+    return data || [];
 };
 
 export default function PostCardsSection({ rowInit }: IPostCardsSection) {

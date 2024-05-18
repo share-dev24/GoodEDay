@@ -1,4 +1,4 @@
-import type { Timestamp } from "firebase/firestore";
+import type { Timestamp } from 'firebase/firestore';
 
 export interface IPostCards {
     postId: string,
@@ -10,7 +10,7 @@ export interface IPostCards {
     likeUserList: string[],
     randomTodo: string,
     recommendation: boolean,
-    theme: "event" | "cafe" | "restaurant" | "spot";
+    theme: 'event' | 'cafe' | 'restaurant' | 'spot';
     uid: string,
     writeDate: Timestamp
 }
