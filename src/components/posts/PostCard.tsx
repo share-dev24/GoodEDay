@@ -16,13 +16,13 @@ interface PostCardProps {
 }
 
 
-export default function PostCard({ imageUrl, userName, reviewDate, theme, content, uid }: PostCardProps) {
+export default function PostCard({ imageUrl, userName, reviewDate, theme, content, postId }: PostCardProps) {
     const [isLiked, setIsLiked] = useState(false);
 
     return (
-        <Link to={`posts/${uid}`} >
+        <div className='flex flex-col'>
 
-            <div className='flex flex-col w-[167px] h-[274px] text-ellipsis overflow-hidden'>
+            <div className='flex flex-col w-[167px] h-[278px] text-ellipsis overflow-hidden'>
                 <div className='relative'>
                     <img src={imageUrl} alt='후기' className='w-full h-[167px] rounded-[8px] object-cover' />
                     <button
@@ -42,6 +42,7 @@ export default function PostCard({ imageUrl, userName, reviewDate, theme, conten
                 </div>
 
             </div>
-        </Link>
+            <Link to={`posts/${postId}`} className='text-left text-secondary text-sm'>자세히보기</Link>
+        </div>
     );
 }
