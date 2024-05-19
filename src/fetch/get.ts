@@ -1,5 +1,13 @@
 import { firebaseDb } from '../../firebase';
-import { collection, getDocs, limit, query, orderBy } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  limit,
+  query,
+  orderBy,
+  doc,
+  getDoc
+} from 'firebase/firestore';
 import type { IPostCards } from '../types/postCardsType';
 import type { IRandomCardType } from '../types/randomCardType';
 
@@ -46,5 +54,25 @@ export const getRandomCardsData = async () => {
   } catch (error) {
     console.error('Error getting documents: ', error);
     throw new Error('Error fetching postCards data: ' + error);
+  }
+};
+
+// postDetail page에서 특정 id의 포스트 가져오기
+export const getPostCardById = async (
+  postId: string
+): Promise<IPostCards | null> => {
+  try {
+    const docRef = doc(firebaseDb, 'postCards', postId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      return { postId: docSnap.id, ...data } as IPostCards;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error getting document:', error);
+    throw new Error('Error fetching post card data: ' + error);
   }
 };
