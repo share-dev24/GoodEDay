@@ -1,5 +1,11 @@
 // 굳이데이 후기 디테일 페이지
 
+import PopupLayout from "../components/posts/PopupLayout";
+
 export default function PostDetail() {
-  return <div>post detail page</div>;
+  return (
+    <PopupLayout>
+
+    </PopupLayout>
+  )
 }

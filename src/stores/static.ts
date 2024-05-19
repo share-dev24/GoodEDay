@@ -15,13 +15,13 @@ export const themeCardData: IthemeCardData[] = [
   {
     theme: 'cafe',
     title: '분위기 좋은 카페 어때?',
-    imageURL: '',
+    imageURL: 'src/assets/images/cafe.jpeg',
     season: false
   },
   {
     theme: 'restaurant',
     title: '맛집 탐방은 어때?',
-    imageURL: '',
+    imageURL: 'src/assets/images/restaurant.jpeg',
     season: false
   },
   {
@@ -31,9 +31,9 @@ export const themeCardData: IthemeCardData[] = [
     season: false
   },
   {
-    theme: '관광명소',
+    theme: 'spot',
     title: '숨은 관광명소를 찾아서!',
-    imageURL: '',
+    imageURL: 'src/assets/images/spot.jpeg',
     season: false
   }
 ];
