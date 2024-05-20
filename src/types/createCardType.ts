@@ -38,11 +38,18 @@ export interface IFormData {
   themes: string[];
   range: string;
   numbers?: string;
+  selectPlace?: IPlaceInfo | null;
+}
+
+interface IUserPlace {
+  selectPlace: IPlaceInfo | null;
+  handleOnClickPlace: (placeInfo: IPlaceInfo | null) => void;
 }
 
 export interface ILocationProps {
   userLocation: IUserLocation | undefined;
   formData: IFormData;
+  userPlace: IUserPlace | null;
 }
 
 export interface ILocationResult {
@@ -58,6 +65,15 @@ export interface ILocationResult {
   road_address_name: string;
   x: string;
   y: string;
+}
+
+export interface IPlaceInfo {
+  id: string;
+  x: string;
+  y: string;
+  category_group_code: string;
+  place_name: string;
+  place_url: string;
 }
 
 // CreateFormBtn props interface

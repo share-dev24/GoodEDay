@@ -9,11 +9,16 @@ export default function CreateFormBtn({
   const navigate = useNavigate();
 
   const createCardBtn = (formData: IFormData) => {
+    if (!formData.selectPlace) {
+      alert('추천 장소 1가지를 선택해 주세요!');
+      return;
+    }
+
     navigate('/completed-card', {
       state: {
-        themes: formData.themes,
         range: formData.range,
-        numbers: formData.numbers
+        numbers: formData.numbers,
+        selectPlace: formData.selectPlace
       }
     });
   };

@@ -18,19 +18,36 @@ const changeCategoryCode = (theme: string) => {
   }
 };
 
+// 사용자가 받아온 카테고리 code 데이터 -> 카테고리 theme로 변환하는 함수
+export const changeTheme = (code: string) => {
+  switch (code) {
+    case 'CE7':
+      return '카페';
+    case 'FD6':
+      return '맛집';
+    case 'CT1':
+      return '문화시설';
+    case 'AT4':
+      return '관광명소';
+  }
+};
+
 // 카카로 로컬 api 주소 생성 함수
 export const createKakaoLocalUrl = (
   userLocation: IUserLocation,
   formData: IFormData,
-  themeCode: string
+  theme: string
 ) => {
-  const randomPage = Math.floor(Math.random() * 44 + 1);
+  const randomPage = Math.floor(Math.random() * 9 + 1);
   const radius = parseInt(formData.range) * 1000;
-  const code = changeCategoryCode(themeCode);
+  const code = changeCategoryCode(theme);
 
-  return formData.range === '제한없음'
-    ? `${kakaoUrl}?category\_group\_code=${code}&page=${randomPage}&size=10`
-    : `${kakaoUrl}?y=${userLocation?.latitude}&x=${userLocation?.longitude}&category\_group\_code=${code}&radius=${radius}&page=${randomPage}&size=10`;
+  const resultUrl =
+    formData.range === '제한없음'
+      ? `${kakaoUrl}?category\_group\_code=${code}&page=${randomPage}&size=10`
+      : `${kakaoUrl}?y=${userLocation?.latitude}&x=${userLocation?.longitude}&category\_group\_code=${code}&radius=${radius}&page=${randomPage}&size=10`;
+
+  return resultUrl;
 };
 
 // 카카오 로컬 api -> GET 함수
