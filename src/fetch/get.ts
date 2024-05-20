@@ -52,8 +52,11 @@ export const getRandomCardsData = async () => {
       return randomCardsData;
     }
   } catch (error) {
-    console.error('Error getting documents: ', error);
-    throw new Error('Error fetching postCards data: ' + error);
+    console.error(
+      '사용자의 랜덤 카드 정보를 가져오는데 실패했습니다. : ',
+      error
+    );
+    throw new Error('사용자의 랜덤 카드를 가져오는데 발생한 에러: ' + error);
   }
 };
 
@@ -72,7 +75,29 @@ export const getPostCardById = async (
       return null;
     }
   } catch (error) {
-    console.error('Error getting document:', error);
-    throw new Error('Error fetching post card data: ' + error);
+    console.error('이 post의 정보를 가져오는데 에러가 발생합니다.', error);
+    throw new Error('post detail 정보를 가져오는데 발생한 에러: ' + error);
+  }
+};
+
+// 유저가 좋아요한 카드의 list를 가져오기
+export const getLikeCardsList = async (
+  uid: string
+): Promise<string[] | null> => {
+  try {
+    const docRef = doc(firebaseDb, 'userData', uid, 'likeCardsList');
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      return data as string[];
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('유저가 좋아요한 카드 리스트를 가져올 수 없습니다.:', error);
+    throw new Error(
+      '유저가 좋아요한 카드 리스트를 가져올 때 오류가 발생합니다: ' + error
+    );
   }
 };

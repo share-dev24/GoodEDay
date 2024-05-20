@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import PopupLayout from "../components/posts/PopupLayout";
 import { getPostCardById } from '../fetch/get'
@@ -7,14 +7,13 @@ import getTimeSimple from '../modules/TimeCompiler';
 import getThemeKR from '../modules/ThemeNameCompiling';
 import HeartIcon from '../components/posts/HeartIcon';
 
-const fetchPostDetailCardData = async (postId: string): Promise<IPostCards> => {
+const fetchPostDetailCardData = async (postId: string): Promise<IPostCards | null> => {
   const data = await getPostCardById(postId);
   return data || null
 }
 
 export default function PostDetail() {
   const { postId } = useParams<{ postId: string }>();
-  const navigate = useNavigate();
 
   const { data: post, error, isLoading } = useQuery({ queryKey: ['fetchPostCard', postId], queryFn: () => fetchPostDetailCardData(postId as string) });
 
