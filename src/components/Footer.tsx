@@ -1,10 +1,33 @@
 // 인스타그램 계정과 굳이데이 노션 링크도 추가 예정 (현재 : 깃허브, 페이스북)
 
+import { useNavigate } from 'react-router-dom';
+import { firebaseAuth } from '../../firebase';
+
 export default function Footer() {
+  const navigate = useNavigate();
+
+  // 로그아웃 함수
+  const logout = () => {
+    const agree = confirm('로그아웃하시겠습니까?');
+
+    if (!agree) return;
+
+    try {
+      firebaseAuth.signOut();
+      sessionStorage.clear();
+      navigate('/login');
+    } catch (error) {
+      console.log(`로그아웃 에러 발생 : ${error}`);
+    }
+  };
+
   return (
     <footer className='w-full mt-5xl p-5xl flex flex-col justify-center items-start gap-5xl bg-gray-300 text-gray-200'>
-      <section>
+      <section className='w-full flex justify-between items-center'>
         <h1 className='text-3xl font-bold'>굳이데이</h1>
+        <button onClick={logout} className='text-xs text-black border-b'>
+          로그아웃
+        </button>
       </section>
       <section className='w-full flex flex-col justify-center items-start gap-xl font-light'>
         <p>굳이데이 제작 : GoodEDay 강지은 한세빈</p>
