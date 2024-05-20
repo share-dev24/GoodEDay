@@ -1,5 +1,5 @@
 interface ICreateFormTitleProps {
-  page: string;
+  page: 'create' | 'completed';
   name?: string | null;
 }
 
