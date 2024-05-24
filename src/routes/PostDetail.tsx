@@ -1,35 +1,30 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import PopupLayout from "../components/posts/PopupLayout";
+import PopupLayout from '../components/posts/PopupLayout';
 import { getPostCardById } from '../fetch/get'
 import type { IPostCards } from '../types/postCardsType';
 import getTimeSimple from '../modules/TimeCompiler';
 import getThemeKR from '../modules/ThemeNameCompiling';
 import HeartIcon from '../components/posts/HeartIcon';
+import { useUserStore } from '../stores/store';
 
 const fetchPostDetailCardData = async (postId: string): Promise<IPostCards | null> => {
   const data = await getPostCardById(postId);
-  return data || null
+  return data
 }
 
 export default function PostDetail() {
+  const { uid: storedUid } = useUserStore();
   const { postId } = useParams<{ postId: string }>();
+  const location = useLocation()
+  const { data: post } = useQuery({ queryKey: ['fetchPostCard', postId, location], queryFn: () => fetchPostDetailCardData(postId as string) });
 
-  const { data: post, error, isLoading } = useQuery({ queryKey: ['fetchPostCard', postId], queryFn: () => fetchPostDetailCardData(postId as string) });
-
-  console.log(postId)
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error loading post data</p>;
-  }
 
   if (!post) {
-    return <p>Post not found</p>;
+    return (<div className='text-center'>존재하지 않거나 삭제된 카드입니다.</div>)
   }
+
+  const state = post?.likeUserList.includes(storedUid || '')
 
   return (
     <PopupLayout>
@@ -46,15 +41,15 @@ export default function PostDetail() {
           <span className='font-light text-gray-200'>{getTimeSimple(post.writeDate)}</span>
         </div>
         <img className='object-cover w-full h-[240px]' src={post.image} alt='리뷰사진' />
+        <div className='bg-gray rounded-lg'>
 
+          <HeartIcon postId={post.postId} likeCounter={post.likeCount} state={state} />
+        </div>
         <p>👉 테마: {getThemeKR(post.theme)}</p>
         <p>👉 주소: {post.address}</p>
         <p>👉 굳이 할 일: {post.randomTodo}</p>
         <p className='text-sm p-4px'>{post.content}</p>
-        <div className='bg-gray p-md rounded-md w-[100px]'>
 
-          <HeartIcon isLike={false} likeCounter={post.likeCount} />
-        </div>
       </div>
     </PopupLayout>
   );

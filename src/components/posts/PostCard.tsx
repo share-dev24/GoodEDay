@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeartIcon from './HeartIcon';
 import { Timestamp } from 'firebase/firestore';
 import getThemeKR from '../../modules/ThemeNameCompiling';
 import getTimeSimple from '../../modules/TimeCompiler';
+import { useUserStore } from '../../stores/store';
 
 interface PostCardProps {
     postId: string,
@@ -13,11 +13,14 @@ interface PostCardProps {
     theme: string;
     imageUrl?: string;
     content: string;
+    likeUserList: string[]
 }
 
 
-export default function PostCard({ imageUrl, userName, reviewDate, theme, content, postId }: PostCardProps) {
-    const [isLiked, setIsLiked] = useState(false);
+export default function PostCard({ imageUrl, userName, reviewDate, theme, content, postId, likeUserList }: PostCardProps) {
+    const { uid: storedUid } = useUserStore()
+
+    const state = likeUserList.includes(storedUid || '');
 
     return (
         <div className='flex flex-col'>
@@ -25,12 +28,12 @@ export default function PostCard({ imageUrl, userName, reviewDate, theme, conten
             <div className='flex flex-col w-[167px] h-[278px] text-ellipsis overflow-hidden'>
                 <div className='relative'>
                     <img src={imageUrl} alt='후기' className='w-full h-[167px] rounded-[8px] object-cover' />
-                    <button
-                        className='absolute top-[140px] right-[8px]'
-                        onClick={() => setIsLiked((prev) => !prev)}
-                    >
-                        <HeartIcon isLike={isLiked} />
-                    </button>
+
+
+                    <div className='absolute top-[140px] right-[8px]'>
+                        <HeartIcon postId={postId} state={state} />
+                    </div>
+
                 </div>
                 <div className='flex justify-between p-2px pt-4px'>
                     <span className='font-bold'>{userName}</span>
@@ -42,7 +45,7 @@ export default function PostCard({ imageUrl, userName, reviewDate, theme, conten
                 </div>
 
             </div>
-            <Link to={`posts/${postId}`} className='text-left text-secondary text-sm'>자세히보기</Link>
+            <Link to={`/posts/${postId}`} className='text-left text-secondary text-sm'>자세히보기</Link>
         </div>
     );
 }

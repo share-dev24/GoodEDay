@@ -1,7 +1,15 @@
 import { firebaseDb, firebaseStorage } from '../../firebase';
-import { doc, updateDoc } from 'firebase/firestore';
+import {
+  doc,
+  updateDoc,
+  runTransaction,
+  arrayUnion,
+  arrayRemove,
+  increment
+} from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import type { IHandleUpdateFile, IHandleUpdateName } from '../types/staticType';
+import type { IUpdateHeartProps } from '../types/postCardsType';
 
 // 사용자 이름 업데이트 함수
 export const handleUpdateName = async ({ uid, newName }: IHandleUpdateName) => {
@@ -44,5 +52,54 @@ export const handleFileChange = async ({ file, uid }: IHandleUpdateFile) => {
     } catch (error) {
       console.error('파일 업로드 실패:', error);
     }
+  }
+};
+
+// 서버에 하트 누른 결과를 추가하는 함수
+export const updateLikeState = async ({
+  uid,
+  postId,
+  isLike
+}: IUpdateHeartProps) => {
+  try {
+    await runTransaction(firebaseDb, async (transaction) => {
+      const userDocRef = doc(firebaseDb, 'userData', uid);
+      const postDocRef = doc(firebaseDb, 'postCards', postId);
+
+      const [userDoc, postDoc] = await Promise.all([
+        transaction.get(userDocRef),
+        transaction.get(postDocRef)
+      ]);
+
+      if (!userDoc.exists()) {
+        throw new Error('존재하지 않는 유저입니다.');
+      }
+
+      if (!postDoc.exists()) {
+        throw new Error('존재하지 않는 카드입니다.');
+      }
+
+      if (isLike) {
+        transaction.update(userDocRef, {
+          likeCards: arrayUnion(postId)
+        });
+        transaction.update(postDocRef, {
+          likeCount: increment(1),
+          likeUserList: arrayUnion(uid)
+        });
+      } else {
+        transaction.update(userDocRef, {
+          likeCards: arrayRemove(postId)
+        });
+        transaction.update(postDocRef, {
+          likeCount: increment(-1),
+          likeUserList: arrayRemove(uid)
+        });
+      }
+    });
+
+    console.log('좋아요 처리가 성공적으로 완료되었습니다.');
+  } catch (error) {
+    console.error('좋아요 처리에 실패했습니다: ', error);
   }
 };

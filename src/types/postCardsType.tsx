@@ -14,3 +14,15 @@ export interface IPostCards {
     uid: string,
     writeDate: Timestamp
 }
+
+
+export interface IUpdateHeartProps {
+    uid: string,
+    postId: string,
+    isLike: boolean
+}
+
+export interface ILikeState {
+    origin: boolean;
+    change: boolean;
+}

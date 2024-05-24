@@ -81,18 +81,16 @@ export const getPostCardById = async (
 };
 
 // 유저가 좋아요한 카드의 list를 가져오기
-export const getLikeCardsList = async (
-  uid: string
-): Promise<string[] | null> => {
+export const getLikeCardsList = async (uid: string): Promise<string[]> => {
   try {
-    const docRef = doc(firebaseDb, 'userData', uid, 'likeCardsList');
+    const docRef = doc(firebaseDb, 'userData', uid);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       const data = docSnap.data();
-      return data as string[];
+      return data.likeCards as string[];
     } else {
-      return null;
+      return [];
     }
   } catch (error) {
     console.error('유저가 좋아요한 카드 리스트를 가져올 수 없습니다.:', error);
