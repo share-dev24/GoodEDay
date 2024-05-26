@@ -1,7 +1,7 @@
-import { useState, useCallback, useEffect } from "react";
-import type { IUpdateHeartProps } from "../../types/postCardsType";
-import { updateLikeState } from "../../fetch/update";
-import { useUserStore } from "../../stores/store";
+import { useState, useCallback, useEffect } from 'react';
+import type { IUpdateHeartProps } from '../../types/postCardsType';
+import { updateLikeState } from '../../fetch/update';
+import { useUserStore } from '../../stores/store';
 
 interface IHeartIcon {
     likeCounter?: number;
