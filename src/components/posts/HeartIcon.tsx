@@ -24,7 +24,8 @@ export default function HeartIcon({ likeCounter, state, postId }: IHeartIcon) {
 
     useEffect(() => {
         setIsLiked(state)
-    }, [state])
+        setLikeCount(likeCounter)
+    }, [state, likeCounter])
 
     return (
         <button onClick={handleLike} className='inline'>

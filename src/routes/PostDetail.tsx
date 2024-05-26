@@ -18,8 +18,7 @@ export default function PostDetail() {
   const { postId } = useParams<{ postId: string }>();
   const { data: post, isLoading, isError } = useQuery({
     queryKey: ['fetchPostCard', postId],
-    queryFn: () => fetchPostDetailCardData(postId as string),
-    staleTime: 10000,
+    queryFn: () => fetchPostDetailCardData(postId as string)
   });
 
   if (isLoading) {
