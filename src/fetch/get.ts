@@ -3,13 +3,18 @@ import { collection, getDocs, limit, query, orderBy } from 'firebase/firestore';
 import type { IPostCards } from '../types/postCardsType';
 import type { IRandomCardType } from '../types/randomCardType';
 
+type FilteringType = 'writeDate' | 'likeCount';
+
 // 작성된 PostCards를 최신 writeTime을 기준으로 (4 * itemRows)개의 문서 가져오기
-export const getPostCardsData = async (itemRows: number) => {
+export const getPostCardsData = async (
+  itemRows: number,
+  orderType: FilteringType
+) => {
   try {
     const querySnapshot = await getDocs(
       query(
         collection(firebaseDb, 'postCards'),
-        orderBy('writeDate', 'desc'),
+        orderBy(orderType, 'desc'),
         limit(4 * itemRows)
       )
     );
