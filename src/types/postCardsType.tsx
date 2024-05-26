@@ -26,3 +26,7 @@ export interface ILikeState {
     origin: boolean;
     change: boolean;
 }
+
+export interface IOriginLikeState extends ILikeState {
+    originLikeCount: number;
+}

@@ -3,6 +3,9 @@ interface IShowMoreButton {
 }
 
 export default function ShowMoreButton({ onClick }: IShowMoreButton) {
+
+
+
     return (
         <button
             onClick={onClick}

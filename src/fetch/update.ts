@@ -4,8 +4,8 @@ import {
   updateDoc,
   runTransaction,
   arrayUnion,
-  arrayRemove,
-  increment
+  arrayRemove
+  // increment
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import type { IHandleUpdateFile, IHandleUpdateName } from '../types/staticType';
@@ -84,21 +84,19 @@ export const updateLikeState = async ({
           likeCards: arrayUnion(postId)
         });
         transaction.update(postDocRef, {
-          likeCount: increment(1),
           likeUserList: arrayUnion(uid)
+          // likeCount: increment(1)
         });
       } else {
         transaction.update(userDocRef, {
           likeCards: arrayRemove(postId)
         });
         transaction.update(postDocRef, {
-          likeCount: increment(-1),
+          // likeCount: increment(-1),
           likeUserList: arrayRemove(uid)
         });
       }
     });
-
-    console.log('좋아요 처리가 성공적으로 완료되었습니다.');
   } catch (error) {
     console.error('좋아요 처리에 실패했습니다: ', error);
   }

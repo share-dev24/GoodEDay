@@ -1,10 +1,9 @@
-import { useState } from "react"
-import PostCard from "./PostCard"
-import PostCardsGrid from "./PostCardsGrid"
+import { useState } from 'react';
+import PostCard from './PostCard';
+import PostCardsGrid from './PostCardsGrid';
 import { useQuery } from '@tanstack/react-query';
-import { getPostCardsData } from '../../fetch/get'
+import { getPostCardsData } from '../../fetch/get';
 import type { IPostCards } from '../../types/postCardsType';
-import { useLocation } from "react-router-dom";
 
 interface IPostCardsSection {
     rowInit: number;
@@ -16,13 +15,16 @@ const fetchPostCardsData = async (itemRows: number): Promise<IPostCards[]> => {
 };
 
 export default function PostCardsSection({ rowInit }: IPostCardsSection) {
-    const location = useLocation()
-    const [itemRows, setItemRows] = useState<number>(rowInit)
-    const { data: postCardsData } = useQuery({ queryKey: ['fetchPostCards', itemRows, location], queryFn: () => fetchPostCardsData(itemRows) });
-    console.log(postCardsData)
+
+    const [itemRows, setItemRows] = useState<number>(rowInit);
+
+    const { data: postCardsData } = useQuery({
+        queryKey: ['fetchPostCard'],
+        queryFn: () => fetchPostCardsData(itemRows)
+    });
     return (
         <>
-            <PostCardsGrid >
+            <PostCardsGrid>
                 {postCardsData?.map((data: IPostCards) => (
                     <PostCard key={`${data.writeDate}-${data.name}`}
                         postId={data.postId}
@@ -36,8 +38,6 @@ export default function PostCardsSection({ rowInit }: IPostCardsSection) {
                     />
                 ))}
             </PostCardsGrid>
-
         </>
-    )
-
+    );
 }

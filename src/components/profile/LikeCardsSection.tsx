@@ -33,4 +33,3 @@ export default function LikeCardsSection() {
     );
 }
 
-// 아마도.........다시 짜야할 듯..? 하트....... 리스트 불러오는 컴포넌트를 app에다가 둘까..?ㅠㅜ 아니 그럼 계속 불러오는데?
