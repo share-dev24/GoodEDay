@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import HeartIcon from './HeartIcon';
 import { Timestamp } from 'firebase/firestore';
 import getThemeKR from '../../modules/ThemeNameCompiling';
@@ -20,11 +20,14 @@ interface PostCardProps {
 export default function PostCard({ imageUrl, userName, reviewDate, theme, content, postId, likeUserList }: PostCardProps) {
     const { uid: storedUid } = useUserStore();
     const [state, setState] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         setState(likeUserList.includes(storedUid || ''));
     }, [likeUserList]);
 
+    // Determine the link based on the current location
+    const linkTo = location.pathname === '/' ? `/${postId}` : `/posts/${postId}`;
 
     return (
         <div className='flex flex-col'>
@@ -44,7 +47,7 @@ export default function PostCard({ imageUrl, userName, reviewDate, theme, conten
                     <span className='text-sm'>&nbsp;{content}</span>
                 </div>
             </div>
-            <Link to={`/posts/${postId}`} className='text-left text-secondary text-sm'>자세히보기</Link>
+            <Link to={linkTo} className='text-left text-secondary text-sm'>자세히보기</Link>
         </div>
     );
 }

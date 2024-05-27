@@ -17,7 +17,13 @@ const route = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <Main />
+        element: <Main />,
+        children: [
+          {
+            path: ':postId',
+            element: <PostDetail />
+          }
+        ]
       },
       {
         path: 'login',
