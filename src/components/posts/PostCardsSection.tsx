@@ -12,7 +12,7 @@ interface IPostCardsSection {
 
 type FilteringType = 'writeDate' | 'likeCount'
 
-const fetchPostCardsData = async (itemRows: number, orderType: string): Promise<IPostCards[]> => {
+const fetchPostCardsData = async (itemRows: number, orderType: FilteringType): Promise<IPostCards[]> => {
     const data = await getPostCardsData(itemRows, orderType);
     return data || [];
 };
