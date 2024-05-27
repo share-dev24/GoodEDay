@@ -50,9 +50,7 @@ export default function PostDetail() {
           <span className='font-light text-gray-200'>{getTimeSimple(post.writeDate)}</span>
         </div>
         <img className='object-cover w-full h-[240px]' src={post.image} alt='리뷰사진' />
-        <div className='bg-gray rounded-lg p-sm w-auto'>
-          <HeartIcon postId={post.postId} likeCounter={likeCounter} state={state} />
-        </div>
+        <HeartIcon postId={post.postId} likeCounter={likeCounter} state={state} />
         <p>👉 테마: {getThemeKR(post.theme)}</p>
         <p>👉 주소: {post.address}</p>
         <p>👉 굳이 할 일: {post.randomTodo}</p>
