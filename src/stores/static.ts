@@ -113,5 +113,11 @@ export const randomTodoData: IrandomTodoData = {
       todo: '가까운 체육시설 방문해서 최소 1시간 운동해보기',
       desc: '가까운 체육시설에 가서 최소 1시간 운동하기'
     }
+  ],
+  spot: [
+    {
+      todo: '새로운 공간에서 새로운 힐링 어때?',
+      desc: '유명 스팟 방문해서 인증샷 찍고 공유하기'
+    }
   ]
 };

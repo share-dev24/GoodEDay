@@ -50,7 +50,6 @@ export default function KakaoPlace({
         </svg>
       </div>
     );
-
   return (
     <>
       {places?.length ? (
@@ -66,7 +65,8 @@ export default function KakaoPlace({
                     y: place.y,
                     category_group_code: place.category_group_code,
                     place_name: place.place_name,
-                    place_url: place.place_url
+                    place_url: place.place_url,
+                    address_url: place.road_address_name
                   })
                 }
                 className={`w-full px-md py-2xl flex flex-col justify-center items-start gap-xl text-black  border border-solid border-gray-200 rounded-md cursor-pointer hover:bg-gray ${place.id === userPlace?.selectPlace?.id ? 'bg-gray' : null}`}
