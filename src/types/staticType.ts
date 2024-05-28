@@ -47,3 +47,8 @@ export interface UserState {
     photo: string | null
   ) => void;
 }
+
+export interface LikeCardsListState {
+  cardsList: string[];
+  setCardsList: (cardsList: string[]) => void;
+}

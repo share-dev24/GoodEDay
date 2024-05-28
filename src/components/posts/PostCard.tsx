@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import HeartIcon from './HeartIcon';
 import { Timestamp } from 'firebase/firestore';
 import getThemeKR from '../../modules/ThemeNameCompiling';
 import getTimeSimple from '../../modules/TimeCompiler';
+import { useUserStore } from '../../stores/store';
 
 interface PostCardProps {
     postId: string,
@@ -13,24 +14,29 @@ interface PostCardProps {
     theme: string;
     imageUrl?: string;
     content: string;
+    likeUserList: string[]
 }
 
+export default function PostCard({ imageUrl, userName, reviewDate, theme, content, postId, likeUserList }: PostCardProps) {
+    const { uid: storedUid } = useUserStore();
+    const [state, setState] = useState(false);
+    const location = useLocation();
 
-export default function PostCard({ imageUrl, userName, reviewDate, theme, content, uid }: PostCardProps) {
-    const [isLiked, setIsLiked] = useState(false);
+    useEffect(() => {
+        setState(likeUserList.includes(storedUid || ''));
+    }, [likeUserList]);
+
+    // Determine the link based on the current location
+    const linkTo = location.pathname === '/' ? `/${postId}` : `/posts/${postId}`;
 
     return (
-        <Link to={`posts/${uid}`} >
-
-            <div className='flex flex-col w-[167px] h-[274px] text-ellipsis overflow-hidden'>
+        <div className='flex flex-col'>
+            <div className='flex flex-col w-[167px] h-[278px] text-ellipsis overflow-hidden'>
                 <div className='relative'>
                     <img src={imageUrl} alt='후기' className='w-full h-[167px] rounded-[8px] object-cover' />
-                    <button
-                        className='absolute top-[140px] right-[8px]'
-                        onClick={() => setIsLiked((prev) => !prev)}
-                    >
-                        <HeartIcon isLike={isLiked} />
-                    </button>
+                    <div className='absolute top-[140px] right-[8px]'>
+                        <HeartIcon postId={postId} state={state} />
+                    </div>
                 </div>
                 <div className='flex justify-between p-2px pt-4px'>
                     <span className='font-bold'>{userName}</span>
@@ -40,8 +46,8 @@ export default function PostCard({ imageUrl, userName, reviewDate, theme, conten
                     <span className='font-semibold inline-block'>{`[${getThemeKR(theme)}]`}</span>
                     <span className='text-sm'>&nbsp;{content}</span>
                 </div>
-
             </div>
-        </Link>
+            <Link to={linkTo} className='text-left text-secondary text-sm'>자세히보기</Link>
+        </div>
     );
 }

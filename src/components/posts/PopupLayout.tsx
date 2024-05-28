@@ -18,7 +18,7 @@ const FullScreenOverlay = styled.div`
 const PopupBox = styled.div`
   position: relative;
   width: 400px;
-  height: 500px;
+  height: auto;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);

@@ -1,6 +1,8 @@
+
 import { useState } from "react";
 import PostCard from "./PostCard";
 import PostCardsGrid from "./PostCardsGrid";
+
 import { useQuery } from '@tanstack/react-query';
 import { getPostCardsData } from '../../fetch/get';
 import type { IPostCards } from '../../types/postCardsType';
@@ -26,14 +28,11 @@ export default function PostCardsSection({ rowInit }: IPostCardsSection) {
         queryFn: () => fetchPostCardsData(itemRows, orderType),
     });
 
-
-    return (
-        <>
             <FilteringButton
                 onPopularClick={() => setOrderType('likeCount')}
                 onRealtimeClick={() => setOrderType('writeDate')}
             />
-            <PostCardsGrid >
+            <PostCardsGrid>
                 {postCardsData?.map((data: IPostCards) => (
                     <PostCard key={`${data.writeDate}-${data.name}`}
                         postId={data.postId}
@@ -43,11 +42,10 @@ export default function PostCardsSection({ rowInit }: IPostCardsSection) {
                         theme={data.theme}
                         content={data.content}
                         imageUrl={data.image}
+                        likeUserList={data.likeUserList}
                     />
                 ))}
             </PostCardsGrid>
-
         </>
-    )
-
+    );
 }
