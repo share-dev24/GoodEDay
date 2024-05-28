@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ThemeBadge from './ThemeBadge';
-import getThemeKR from '../../modules/ThemeNameCompiling';
+import { getThemeKR } from '../../modules/ThemeNameCompiling';
 
 interface ThemeCardProps {
   theme: string;
@@ -24,13 +24,16 @@ const Content = styled.div`
   width: 100%;
   padding: 10px;
   color: white;
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
   font-weight: bold;
   line-height: 1.3;
 `;
 
-export default function ThemeCard({ imageUrl = '/src/assets/images/a.jpg', theme, content }: ThemeCardProps) {
-
+export default function ThemeCard({
+  imageUrl = '/src/assets/images/a.jpg',
+  theme,
+  content
+}: ThemeCardProps) {
   return (
     <Link to={`create-card/${theme}`}>
       <div className='w-[167px] h-[270px] relative'>
