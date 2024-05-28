@@ -74,6 +74,7 @@ export interface IPlaceInfo {
   category_group_code: string;
   place_name: string;
   place_url: string;
+  address_url: string;
 }
 
 // CreateFormBtn props interface

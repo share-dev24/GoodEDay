@@ -19,9 +19,10 @@ export interface IrandomTodoData {
   cafe: todoData[];
   restaurant: todoData[];
   event: todoData[];
+  spot: todoData[];
 }
 
-interface todoData {
+export interface todoData {
   todo: string;
   desc: string;
 }
