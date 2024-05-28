@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import MainTitle from '../components/common/MainTitle';
 import SubTitle from '../components/common/SubTitle';
 import ThemeCardsGrid from '../components/common/ThemeCardsGrid';
@@ -47,6 +47,7 @@ export default function Main() {
         <Link to='posts' className='p-sm text-10px flex items-center'>전체보기</Link>
       </div>
       <PostCardsSection rowInit={2} />
+      <Outlet />
     </div>
   );
 }

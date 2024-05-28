@@ -1,8 +1,8 @@
-import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { useNavigate } from "react-router-dom";
-import { firebaseAuth, firebaseDb } from "../../../firebase";
-import { useUserStore } from "../../stores/store";
+import { useNavigate } from 'react-router-dom';
+import { firebaseAuth, firebaseDb } from '../../../firebase';
+import { useUserStore } from '../../stores/store';
 
 export default function LoginButton() {
     const googleProvider = new GoogleAuthProvider();
@@ -42,7 +42,7 @@ export default function LoginButton() {
 
             navigate('/');
         } catch (error) {
-            console.error("Google 로그인 중 오류:", error);
+            console.error('Google 로그인 중 오류:', error);
         }
     };
 
@@ -83,7 +83,7 @@ export default function LoginButton() {
 
 
     return (
-        <div className="flex flex-col gap-[8px] w-full item-center">
+        <div className='flex flex-col gap-[8px] w-full item-center'>
             <button
                 onClick={handleGoogleLogin}
                 className='w-full p-md text-xl font-bold text-white bg-gradient-to-r from-secondary to-primary rounded-md transition duration-150 ease-in-out hover:opacity-80'
